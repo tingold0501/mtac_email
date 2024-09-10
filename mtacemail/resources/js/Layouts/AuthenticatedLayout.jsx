@@ -21,7 +21,7 @@ export default function Authenticated({ user, children }) {
                     <div>
                         <div className="brand-logo d-flex align-items-center justify-content-between">
                             <a
-                                href="./index.html"
+                                href={route("dashboard")}
                                 className="text-nowrap logo-img"
                             >
                                 <img
@@ -45,7 +45,7 @@ export default function Authenticated({ user, children }) {
                                 <li className="sidebar-item sidebar-item ">
                                     <a
                                         className="sidebar-link"
-                                        href="./index.html"
+                                        href={route("dashboard")}
                                         aria-expanded="false"
                                     >
                                         <span>
@@ -142,7 +142,7 @@ export default function Authenticated({ user, children }) {
                                         aria-labelledby="dropdownMenuButton1"
                                     >
                                         <li>
-                                            <Link className="dropdown-item">
+                                            <Link className="dropdown-item" href = {route("campaign")}>
                                                 All Campaigns
                                             </Link>
                                         </li>

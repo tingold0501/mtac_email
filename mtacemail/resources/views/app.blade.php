@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="/assets/dashboard/css/styles.min.css">
     <!-- Customized Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="/assets/home/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/assets/home/css/bootstrap.min.css">
     <!-- Fonts -->
     <script src="/assets/dashboard/libs/apexcharts/dist/apexcharts.min.js"></script>
 
@@ -33,11 +33,7 @@
     <link href="/assets/home/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="/assets/home/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-
-
-
     <link rel="stylesheet" href="/assets/dashboard/css/styles.min.css" />
-
 
     <!-- Template Stylesheet -->
     <link href="/assets/home/css/style.css" rel="stylesheet">
@@ -46,6 +42,15 @@
     @viteReactRefresh
     @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
     @inertiaHead
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
 </head>
 
 <body class="font-sans antialiased">

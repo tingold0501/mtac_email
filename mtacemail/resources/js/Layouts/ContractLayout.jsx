@@ -5,7 +5,7 @@ import { Link } from "@inertiajs/react";
 export default function ContractLayout({auth, children}) {
     const active = "relative inline cursor-pointer text-base font-medium before:bg-gray-700  before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100";
     return (
-        <AuthenticatedLayout user={auth.user}>
+        <AuthenticatedLayout user={auth}>
         <div className="container-fluid">
             <div className="card">
                 <div className="card-body flex flex-nowrap">

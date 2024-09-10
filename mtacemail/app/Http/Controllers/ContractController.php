@@ -38,6 +38,7 @@ class ContractController extends Controller
     public function create()
     {
         $contract_statues = ContractStatusController::getContractStatus();
+        // dd($contract_statues);
         return Inertia::render('Contract/Partials/CreateContract',['contract_statues' => $contract_statues]);
     }
 
@@ -46,6 +47,14 @@ class ContractController extends Controller
      */
     public function store(StoreContractRequest $request)
     {
+        $contract = new Contract();
+        $contract->email = $request->email;
+        $contract->first_name = $request->first_name;
+        $contract->last_name = $request->last_name;
+        $contract->user_id = Auth::user()->id;
+        $contract->contract_statue_id = $request->contract_statue_id;
+        $contract->save();
+        return Inertia::render('Contract/ContractOverview');
     }
 
     /**

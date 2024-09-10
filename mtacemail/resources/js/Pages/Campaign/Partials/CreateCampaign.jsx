@@ -9,7 +9,7 @@ import { Link, useForm, usePage } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 
-const Contract = ({ auth, mustVerifyEmail, status }) => {
+const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
     const [email,last_name, first_name ] = useState("");
     const [contract_statue_id] = useState(1);
     const { contract_statues } = usePage().props;
@@ -113,7 +113,7 @@ const Contract = ({ auth, mustVerifyEmail, status }) => {
                                     htmlFor="contract_statues"
                                     value="Contract Status"
                                 />
-                                <select
+                                {/* <select
                                     className="js-example-basic-single mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "
                                     name="state"
                                     onChange={(e) =>
@@ -129,7 +129,7 @@ const Contract = ({ auth, mustVerifyEmail, status }) => {
                                             {status.name}
                                         </option>
                                     ))}
-                                </select>
+                                </select> */}
 
                                 <InputError
                                     className="mt-2"
@@ -190,4 +190,4 @@ const Contract = ({ auth, mustVerifyEmail, status }) => {
     );
 };
 
-export default Contract;
+export default CreateCamapign;
