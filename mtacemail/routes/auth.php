@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ContractController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -62,11 +63,18 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/contract', function () {
-        return Inertia::render('Contract/ContractOverview');
-    })->name('contract');
-    Route::get('/get-contract-store', function () {
-        return Inertia::render('Contract');
-    })->name('get-contract-store');
-   
+    // Route::get('/contract', function () {
+    //     return Inertia::render('Contract/ContractOverview');
+    // })->name('contract');
+    // Route::get('/contract_create', function () {
+    //     return Inertia::render('Contract/Partials/CreateContract');
+    // })->name('contract_create');
+     
+    Route::post('/contract-create', [ContractController::class, 'store'])
+        ->name('contract-create');
+    Route::controller(ContractController::class)->group(function () {
+        Route::get('/contract', 'index')->name('contract');
+        Route::get('/contract_create', 'create')->name('contract_create');
+        Route::post('/contract_store', 'store')->name('contract_store');
+    });
 });

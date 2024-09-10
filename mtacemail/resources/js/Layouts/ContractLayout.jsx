@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Link } from "@inertiajs/react";
 
 export default function ContractLayout({auth, children}) {
-    const active = "hover:border-b-2 hover:border-gray-500 ";
+    const active = "relative inline cursor-pointer text-base font-medium before:bg-gray-700  before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100";
     return (
         <AuthenticatedLayout user={auth.user}>
         <div className="container-fluid">
@@ -13,7 +13,7 @@ export default function ContractLayout({auth, children}) {
                         Contracts
                     </h5>
                     <Link 
-                        href={route("get-contract-store")}
+                        href={route("contract_create")}
                         className=" w-40 h-10 btn btn-primary mb-4"
                     >
                         Add Contract

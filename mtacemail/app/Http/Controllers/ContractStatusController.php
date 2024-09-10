@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContractStatusRequest;
 use App\Http\Requests\UpdateContractStatusRequest;
 use App\Models\ContractStatus;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ContractStatusController extends Controller
 {
+    public function __construct(){
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+    }
+    public static function getContractStatus(){
+        $contractStatus = DB::table('contract_statues')->get();
+        return $contractStatus;
+    }
     /**
      * Display a listing of the resource.
      */

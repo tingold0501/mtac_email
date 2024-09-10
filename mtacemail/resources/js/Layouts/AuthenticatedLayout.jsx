@@ -101,7 +101,9 @@ export default function Authenticated({ user, children }) {
                                         aria-labelledby="dropdownMenuButton1"
                                     >
                                         <li>
-                                            <Link className="dropdown-item" href = {"/contract"}>
+                                            <Link className="dropdown-item" 
+                                            href = {route("contract")}
+                                            >
                                                 Contract
                                             </Link>
                                         </li>
@@ -222,7 +224,7 @@ export default function Authenticated({ user, children }) {
                             </ul>
                             <div className="unlimited-access hide-menu bg-primary-subtle position-relative mb-7 mt-7 rounded-3">
                                 <div className="d-flex">
-                                    <div className="unlimited-access-title me-3 w-[200px]">
+                                    <div className="unlimited-access-title me-3 w-full">
                                         <h6 className="fw-semibold fs-4 mb-6 text-dark w-75">
                                             {user.name}
                                         </h6>
