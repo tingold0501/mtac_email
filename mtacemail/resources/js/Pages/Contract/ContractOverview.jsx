@@ -1,29 +1,17 @@
-import Cart from "@/Components/Cart";
-import Footer from "@/Components/Footer";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import React from "react";
+import ContractLayout from "@/Layouts/ContractLayout";
+import Authenticated from "@/Layouts/AuthenticatedLayout";
 
-export default function Dashboard({ auth }) {
-    return (
-        <AuthenticatedLayout user={auth.user}>
-            <Head title="Dashboard" />
-            <div className="container-fluid">
+const ContractOverciew = ({ auth }) => {
+    return <ContractLayout auth={auth}>
+        <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-8">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title d-flex align-items-center gap-2 mb-4">
-                                    Traffic Overview
-                                    <span>
-                                        <iconify-icon
-                                            icon="solar:question-circle-bold"
-                                            className="fs-7 d-flex text-muted"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            data-bs-custom-className="tooltip-success"
-                                            data-bs-title="Traffic Overview"
-                                        ></iconify-icon>
-                                    </span>
+                                    ConTract Overview
+                                    
                                 </h5>
                                 <div id="traffic-overview"></div>
                             </div>
@@ -325,12 +313,12 @@ export default function Dashboard({ auth }) {
                             </div>
                         </div>
                     </div>
-                    <Cart />
-                    <Cart />
-                    <Cart />
-                    <Footer />
+                   
+                  
+                   
                 </div>
             </div>
-        </AuthenticatedLayout>
-    );
-}
+    </ContractLayout>;
+};
+
+export default ContractOverciew;

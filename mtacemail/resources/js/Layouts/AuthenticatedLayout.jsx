@@ -1,125 +1,351 @@
-import { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
+import { useState } from "react";
+import { Head, Link } from "@inertiajs/react";
 
-export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+export default function Authenticated({ user, children }) {
+    const [showingNavigationDropdown, setShowingNavigationDropdown] =
+        useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <nav className="bg-white border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
-                        <div className="flex">
-                            <div className="shrink-0 flex items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
-                                </Link>
-                            </div>
-
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink>
-                            </div>
-                        </div>
-
-                        <div className="hidden sm:flex sm:items-center sm:ms-6">
-                            <div className="ms-3 relative">
-                                <Dropdown>
-                                    <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                            >
-                                                {user.name}
-
-                                                <svg
-                                                    className="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </Dropdown.Trigger>
-
-                                    <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Log Out
-                                        </Dropdown.Link>
-                                    </Dropdown.Content>
-                                </Dropdown>
-                            </div>
-                        </div>
-
-                        <div className="-me-2 flex items-center sm:hidden">
-                            <button
-                                onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
-                                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+        <>
+            <div
+                className="page-wrapper"
+                id="main-wrapper"
+                data-layout="vertical"
+                data-navbarbg="skin6"
+                data-sidebartype="full"
+                data-sidebar-position="fixed"
+                data-header-position="fixed"
+            >
+                <Head title="Dashboard" />
+                <aside className="left-sidebar">
+                    <div>
+                        <div className="brand-logo d-flex align-items-center justify-content-between">
+                            <a
+                                href="./index.html"
+                                className="text-nowrap logo-img"
                             >
-                                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path
-                                        className={!showingNavigationDropdown ? 'inline-flex' : 'hidden'}
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                    <path
-                                        className={showingNavigationDropdown ? 'inline-flex' : 'hidden'}
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
+                                <img
+                                    className="w-[150px]"
+                                    src="/assets/dashboard/images/logos/logo.png"
+                                    alt=""
+                                />
+                            </a>
+                            <div
+                                className="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+                                id="sidebarCollapse"
+                            >
+                                <i className="ti ti-x fs-8"></i>
+                            </div>
                         </div>
+                        <nav
+                            className="sidebar-nav scroll-sidebar"
+                            data-simplebar=""
+                        >
+                            <ul id="sidebarnav">
+                                <li className="sidebar-item sidebar-item ">
+                                    <a
+                                        className="sidebar-link"
+                                        href="./index.html"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:home-smile-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Dashboard
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li className="sidebar-item">
+                                    <a
+                                        className="sidebar-link"
+                                        href="./ui-buttons.html"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:layers-minimalistic-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Activity
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li className=" sidebar-item">
+                                    <a
+                                        className="sidebar-link dropdown-toggle sidebar-link dropdown"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:danger-circle-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Audience
+                                        </span>
+                                    </a>
+                                    <ul
+                                        className="dropdown-menu"
+                                        aria-labelledby="dropdownMenuButton1"
+                                    >
+                                        <li>
+                                            <Link className="dropdown-item" href = {"/contract"}>
+                                                Contract
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item">
+                                                Forms
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item">
+                                                Landing Pages
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li className=" sidebar-item">
+                                    <a
+                                        className="sidebar-link dropdown-toggle  dropdown"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:danger-circle-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Campaigns
+                                        </span>
+                                    </a>
+                                    <ul
+                                        className="dropdown-menu"
+                                        aria-labelledby="dropdownMenuButton1"
+                                    >
+                                        <li>
+                                            <Link className="dropdown-item">
+                                                All Campaigns
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item">
+                                                Email Templates
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li className="sidebar-item">
+                                    <a
+                                        className="sidebar-link"
+                                        href="./ui-forms.html"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:file-text-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Automations
+                                        </span>
+                                    </a>
+                                </li>
+                                <li className="sidebar-item">
+                                    <a
+                                        className="sidebar-link"
+                                        href="./ui-typography.html"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:text-field-focus-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Verifications
+                                        </span>
+                                    </a>
+                                </li>
+                                <li className="sidebar-item">
+                                    <a
+                                        className="sidebar-link"
+                                        href="./ui-typography.html"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:text-field-focus-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Exports
+                                        </span>
+                                    </a>
+                                </li>
+                                <li className="sidebar-item">
+                                    <a
+                                        className="sidebar-link"
+                                        href="./ui-typography.html"
+                                        aria-expanded="false"
+                                    >
+                                        <span>
+                                            <iconify-icon
+                                                icon="solar:text-field-focus-bold-duotone"
+                                                className="fs-6"
+                                            ></iconify-icon>
+                                        </span>
+                                        <span className="hide-menu">
+                                            Settings
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div className="unlimited-access hide-menu bg-primary-subtle position-relative mb-7 mt-7 rounded-3">
+                                <div className="d-flex">
+                                    <div className="unlimited-access-title me-3 w-[200px]">
+                                        <h6 className="fw-semibold fs-4 mb-6 text-dark w-75">
+                                            {user.name}
+                                        </h6>
+                                        <Link
+                                            href={route("logout")}
+                                            method="post"
+                                            className="btn btn-primary fs-2 fw-semibold lh-sm"
+                                        >
+                                            Log Out
+                                        </Link>
+                                    </div>
+                                    <div className="unlimited-access-img me-3">
+                                        <img
+                                            src="/assets/dashboard/images/backgrounds/rocket.png"
+                                            alt=""
+                                            className="img-fluid"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
+                </aside>
+                <div className="body-wrapper">
+                    <header className="app-header">
+                        <nav className="navbar navbar-expand-lg navbar-light">
+                            <ul className="navbar-nav">
+                                <li className="nav-item d-block d-xl-none">
+                                    <a
+                                        className="nav-link sidebartoggler nav-icon-hover"
+                                        id="headerCollapse"
+                                        href=""
+                                    >
+                                        <i className="ti ti-menu-2"></i>
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a
+                                        className="nav-link nav-icon-hover"
+                                        href=""
+                                    >
+                                        <i className="ti ti-bell-ringing"></i>
+                                        <div className="notification bg-primary rounded-circle"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div
+                                className="navbar-collapse justify-content-end px-0"
+                                id="navbarNav"
+                            >
+                                <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        className="btn btn-primary me-2"
+                                    >
+                                        <span className="d-none d-md-block">
+                                            Check Pro Version
+                                        </span>{" "}
+                                        <span className="d-block d-md-none">
+                                            Pro
+                                        </span>
+                                    </a>
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        className="btn btn-success"
+                                    >
+                                        <span className="d-none d-md-block">
+                                            Download Free{" "}
+                                        </span>
+                                        <span className="d-block d-md-none">
+                                            Free
+                                        </span>
+                                    </a>
+                                    <li className="nav-item dropdown">
+                                        <a
+                                            className="nav-link nav-icon-hover"
+                                            href=""
+                                            id="drop2"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            <img
+                                                src={user.avatar}
+                                                alt=""
+                                                width="35"
+                                                height="35"
+                                                className="rounded-circle"
+                                            />
+                                        </a>
+                                        <div
+                                            className="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                            aria-labelledby="drop2"
+                                        >
+                                            <div className="message-body">
+                                                <Link
+                                                    className="d-flex align-items-center gap-2 dropdown-item"
+                                                    href={route("profile.edit")}
+                                                >
+                                                    <i className="ti ti-user fs-6"></i>
+                                                    <p className="mb-0 fs-3">
+                                                        My Profile
+                                                    </p>
+                                                </Link>
+                                                <Link
+                                                    href={route("logout")}
+                                                    method="post"
+                                                    as="button"
+                                                    className="btn btn-outline-primary mx-3 mt-2 d-block"
+                                                >
+                                                    Logout
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </header>
+                    {children}
                 </div>
-
-                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
-                    <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
-                        </ResponsiveNavLink>
-                    </div>
-
-                    <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">{user.name}</div>
-                            <div className="font-medium text-sm text-gray-500">{user.email}</div>
-                        </div>
-
-                        <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
-                </header>
-            )}
-
-            <main>{children}</main>
-        </div>
+            </div>
+        </>
     );
 }

@@ -61,4 +61,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/contract', function () {
+        return Inertia::render('Contract/ContractOverview');
+    })->name('contract');
+    Route::get('/get-contract-store', function () {
+        return Inertia::render('Contract');
+    })->name('get-contract-store');
+   
 });
