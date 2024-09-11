@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+    
     <link rel="stylesheet" href="/assets/dashboard/css/styles.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link rel="stylesheet" href="/assets/home/css/bootstrap.min.css">
@@ -34,6 +36,10 @@
     <link href="/assets/home/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/assets/dashboard/css/styles.min.css" />
+   
+    {{-- <link href="path/to/grapes.min.css" rel="stylesheet"/>
+    <script src="path/to/grapes.min.js"></script>
+    <script src="path/to/grapesjs-plugin-forms.min.js"></script> --}}
 
     <!-- Template Stylesheet -->
     <link href="/assets/home/css/style.css" rel="stylesheet">
@@ -51,6 +57,7 @@
             });
         });
     </script>
+  
 
 </head>
 

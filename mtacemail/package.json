@@ -26,6 +26,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.6.0",
         "@fortawesome/react-fontawesome": "^0.2.2",
         "apexcharts": "^3.53.0",
-        "grapesjs": "^0.21.13"
+        "grapesjs": "^0.21.13",
+        "grapesjs-plugin-forms": "^2.0.6"
     }
 }

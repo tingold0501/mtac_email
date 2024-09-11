@@ -14,7 +14,7 @@ class EmailTemplateController extends Controller
      */
     public function index()
     {
-        return Inertia::render('EmailTemplate/src/index');
+        return Inertia::render('EmailTemplate/Home');
     }
 
     /**
