@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCampaignRequest;
 use App\Http\Requests\UpdateCampaignRequest;
 use App\Models\Campaign;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class CampaignController extends Controller
@@ -25,7 +26,8 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Campaign/Partials/CreateCampaign');
+        $contract_sendto = ContractController::getContractInstance();
+        return Inertia::render('Campaign/Partials/CreateCampaign',['contract_sendto' => $contract_sendto]);
     }
 
     /**
@@ -33,7 +35,17 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaignRequest $request)
     {
-        //
+        $campaign = new Campaign();
+        $campaign->sendto = json_encode($request['sendto']);
+        $campaign->from_name = $request['from_name'];
+        $campaign->from_email = $request['from_email'];
+        $campaign->subject = $request['subject'];
+        $campaign->text = $request['text'];
+        $campaign->user_id = Auth::user()->id;
+        $campaign->created_at = now();
+        $campaign->updated_at = now();
+        $campaign->save();
+        return Inertia::render('Campaign/Campaign');
     }
 
     /**

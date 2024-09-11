@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\EmailTemplateController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ContractController::class)->group(function () {
         Route::get('/contract', 'index')->name('contract');
-        Route::get('/contract_create', 'create')->name('contract_create');
+        Route::get('/contract_create', 'get_contract_statues')->name('contract_create');
         Route::post('/contract_store', 'store')->name('contract_store');
     });
 
@@ -75,5 +76,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/campaign-options', 'index2')->name('campaign_options');
         Route::get('/campaign_create', 'create')->name('campaign_create');
         Route::post('/campaign_store', 'store')->name('campaign_store');
+    });
+    Route::controller(EmailTemplateController::class)->group(function () {
+        Route::get('/emailtemplate', 'index')->name('emailtemplate');
+
     });
 });

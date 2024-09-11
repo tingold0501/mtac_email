@@ -8,23 +8,24 @@ import TextInput from "@/Components/TextInput";
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
+import EmailTemplateOption from "@/Components/EmailTemplateOption";
 
 const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
-    const [email,last_name, first_name ] = useState("");
-    const [contract_statue_id] = useState(1);
-    const { contract_statues } = usePage().props;
+    const [from_name, from_email, subject,text] = useState("");
+    const {  contract_sendto } = usePage().props;
 
     const { data, setData, post, errors, processing, recentlySuccessful } =
         useForm({
-            email: email,
-            first_name: first_name,
-            last_name: last_name,
-            contract_statue_id: contract_statue_id,
+            sendto: contract_sendto,
+            from_name: from_name,
+            from_email: from_email,
+            subject: subject,
+            text: text,
         });
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        post(route("contract_store"));
+        post(route("campaign_store"));
     };
 
     return (
@@ -34,108 +35,131 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                     <div className="card-body">
                         <Link
                             className=" text-blue-400 text-xs "
-                            href={route("contract")}
+                            href={route("campaign")}
                         >
                             <FontAwesomeIcon icon="fa-solid fa-backward" />
                             Go Back
                         </Link>
                         <h5 className="card-title fw-semibold mb-4 mt-2">
-                            Add Contract
+                            Add Campaign
                         </h5>
 
                         <form onSubmit={submit} className="mt-6 space-y-6">
                             <div>
-                                <InputLabel htmlFor="email" value="Email" />
-
-                                <TextInput
-                                    id="email"
-                                    className="mt-1 block w-full"
+                                <InputLabel htmlFor="sendto" value="Send To" />
+                                <select
+                                    className="js-example-basic-multiple form-control rounded-xl"
+                                    multiple="multiple"
+                                    name="sendto[]"
                                     onChange={(e) =>
-                                        setData("email", e.target.value)
+                                        setData("sendto", e.target.value)
                                     }
-                                    required
-                                    isFocused
-                                    autoComplete="email"
-                                />
-
-                                <InputError
-                                    className="mt-2"
-                                    message={errors.email}
-                                />
-                            </div>
-
-                            <div>
-                                <InputLabel
-                                    htmlFor="first_name"
-                                    value="First Name"
-                                />
-
-                                <TextInput
-                                    id="first_name"
-                                    type="text"
-                                    className="mt-1 block w-full"
-                                    onChange={(e) =>
-                                        setData("first_name", e.target.value)
-                                    }
-                                    required
-                                    autoComplete="first_name"
-                                />
-
-                                <InputError
-                                    className="mt-2"
-                                    message={errors.first_name}
-                                />
-                            </div>
-                            <div>
-                                <InputLabel
-                                    htmlFor="last_name"
-                                    value="Last Name"
-                                />
-
-                                <TextInput
-                                    id="last_name"
-                                    type="text"
-                                    className="mt-1 block w-full"
-                                    onChange={(e) =>
-                                        setData("last_name", e.target.value)
-                                    }
-                                    required
-                                    autoComplete="last_name"
-                                />
-
-                                <InputError
-                                    className="mt-2"
-                                    message={errors.last_name}
-                                />
-                            </div>
-                            <div>
-                                <InputLabel
-                                    htmlFor="contract_statues"
-                                    value="Contract Status"
-                                />
-                                {/* <select
-                                    className="js-example-basic-single mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "
-                                    name="state"
-                                    onChange={(e) =>
-                                        setData(
-                                            "contract_statue_id",
-                                            e.target.value
-                                        )
-                                    }
-                                    value={data.contract_statue_id}
+                                    value={data.sendto}
                                 >
-                                    {contract_statues.map((status, index) => (
-                                        <option key={index} value={status.id}>
-                                            {status.name}
+                                    {contract_sendto.map((contract_sendto,index) => (
+                                        <option
+                                            key={index}
+                                            value={contract_sendto.email}
+                                        >
+                                            {contract_sendto.email}
                                         </option>
                                     ))}
-                                </select> */}
+                                </select>
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.sendto}
+                                />
+                            </div>
+
+                            <div>
+                                <InputLabel
+                                    htmlFor="from_name"
+                                    value="From Name"
+                                />
+
+                                <TextInput
+                                    id="from_name"
+                                    type="text"
+                                    className="mt-1 block w-full"
+                                    onChange={(e) =>
+                                        setData("from_name", e.target.value)
+                                    }
+                                    required
+                                    autoComplete="from_name"
+                                />
 
                                 <InputError
                                     className="mt-2"
-                                    message={errors.contract_statues}
+                                    message={errors.from_name}
                                 />
                             </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="from_email"
+                                    value="From Email"
+                                />
+
+                                <TextInput
+                                    id="from_email"
+                                    type="text"
+                                    className="mt-1 block w-full"
+                                    onChange={(e) =>
+                                        setData("from_email", e.target.value)
+                                    }
+                                    required
+                                    autoComplete="from_email"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.from_email}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="subject"
+                                    value="Subject"
+                                />
+
+                                <TextInput
+                                    id="subject"
+                                    type="text"
+                                    className="mt-1 block w-full"
+                                    onChange={(e) =>
+                                        setData("subject", e.target.value)
+                                    }
+                                    required
+                                    autoComplete="subject"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.subject}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="text"
+                                    value="Text Privew"
+                                />
+
+                                <TextInput
+                                    id="text"
+                                    type="text"
+                                    className="mt-1 block w-full"
+                                    onChange={(e) =>
+                                        setData("text", e.target.value)
+                                    }
+                                    required
+                                    autoComplete="text"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.text}
+                                />
+                            </div>
+                           
 
                             {mustVerifyEmail &&
                                 user.email_verified_at === null && (
@@ -184,6 +208,7 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                             </div>
                         </form>
                     </div>
+                    <EmailTemplateOption/>
                 </div>
             </div>
         </AuthenticatedLayout>

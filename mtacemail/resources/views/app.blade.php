@@ -51,6 +51,7 @@
             });
         });
     </script>
+
 </head>
 
 <body class="font-sans antialiased">
@@ -73,11 +74,17 @@
     <script src="/assets/dashboard/js/app.min.js"></script>
     <script src="/assets/dashboard/js/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-
-
-
-
+    {{-- <link href="/assets/select2/select2.min.css" rel="stylesheet" />
+    <script src="/assets/select2/select2.min.js"></script> --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+       
+    });
+</script>
 
 
 </html>

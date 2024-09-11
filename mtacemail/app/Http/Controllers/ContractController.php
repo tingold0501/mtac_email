@@ -22,11 +22,15 @@ class ContractController extends Controller
         if($contract == null){
             return redirect()->route('contract_create');
         }
-        
     }
     /**
      * Display a listing of the resource.
      */
+
+    public static function getContractInstance(){
+        $contract_instance = DB::table('contracts')->where('user_id', Auth::user()->id)->get();
+        return $contract_instance;
+    }
     public function index()
     {
         return Inertia::render('Contract/ContractOverview');
@@ -35,10 +39,9 @@ class ContractController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function get_contract_statues()
     {
         $contract_statues = ContractStatusController::getContractStatus();
-        // dd($contract_statues);
         return Inertia::render('Contract/Partials/CreateContract',['contract_statues' => $contract_statues]);
     }
 
