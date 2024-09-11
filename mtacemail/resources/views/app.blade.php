@@ -36,10 +36,6 @@
     <link href="/assets/home/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/assets/dashboard/css/styles.min.css" />
-   
-    {{-- <link href="path/to/grapes.min.css" rel="stylesheet"/>
-    <script src="path/to/grapes.min.js"></script>
-    <script src="path/to/grapesjs-plugin-forms.min.js"></script> --}}
 
     <!-- Template Stylesheet -->
     <link href="/assets/home/css/style.css" rel="stylesheet">
