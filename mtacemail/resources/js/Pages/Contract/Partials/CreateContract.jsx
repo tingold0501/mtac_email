@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -36,7 +36,7 @@ const Contract = ({ auth, mustVerifyEmail, status }) => {
                             className=" text-blue-400 text-xs "
                             href={route("contract")}
                         >
-                            <FontAwesomeIcon icon="fa-solid fa-backward" />
+                            {/* <FontAwesomeIcon icon="fa-solid fa-backward" /> */}
                             Go Back
                         </Link>
                         <h5 className="card-title fw-semibold mb-4 mt-2">
@@ -147,7 +147,6 @@ const Contract = ({ auth, mustVerifyEmail, status }) => {
                                                     "verification.send"
                                                 )}
                                                 method="post"
-                                                as="button"
                                                 className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                             >
                                                 Click here to re-send the

@@ -333,7 +333,6 @@ export default function Authenticated({ user, children }) {
                                                 <Link
                                                     href={route("logout")}
                                                     method="post"
-                                                    as="button"
                                                     className="btn btn-outline-primary mx-3 mt-2 d-block"
                                                 >
                                                     Logout

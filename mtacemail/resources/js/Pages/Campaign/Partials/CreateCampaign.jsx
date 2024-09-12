@@ -1,18 +1,18 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Link, useForm, usePage } from "@inertiajs/react";
-import { Transition } from "@headlessui/react";
+import { Select, Transition } from "@headlessui/react";
 import { useState } from "react";
 import EmailTemplateOption from "@/Components/EmailTemplateOption";
 
 const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
-    const [from_name, from_email, subject,text] = useState("");
-    const {  contract_sendto } = usePage().props;
+    const [from_name, from_email, subject, text] = useState("");
+    const { contract_sendto } = usePage().props;
 
     const { data, setData, post, errors, processing, recentlySuccessful } =
         useForm({
@@ -37,7 +37,7 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                             className=" text-blue-400 text-xs "
                             href={route("campaign")}
                         >
-                            <FontAwesomeIcon icon="fa-solid fa-backward" />
+                            {/* <FontAwesomeIcon icon="fa-solid fa-backward" /> */}
                             Go Back
                         </Link>
                         <h5 className="card-title fw-semibold mb-4 mt-2">
@@ -56,15 +56,18 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                                     }
                                     value={data.sendto}
                                 >
-                                    {contract_sendto.map((contract_sendto,index) => (
-                                        <option
-                                            key={index}
-                                            value={contract_sendto.email}
-                                        >
-                                            {contract_sendto.email}
-                                        </option>
-                                    ))}
+                                    {contract_sendto.map(
+                                        (contract_sendto, index) => (
+                                            <option
+                                                key={index}
+                                                value={contract_sendto.email}
+                                            >
+                                                {contract_sendto.email}
+                                            </option>
+                                        )
+                                    )}
                                 </select>
+                               
                                 <InputError
                                     className="mt-2"
                                     message={errors.sendto}
@@ -116,10 +119,7 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                                 />
                             </div>
                             <div>
-                                <InputLabel
-                                    htmlFor="subject"
-                                    value="Subject"
-                                />
+                                <InputLabel htmlFor="subject" value="Subject" />
 
                                 <TextInput
                                     id="subject"
@@ -159,7 +159,6 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                                     message={errors.text}
                                 />
                             </div>
-                           
 
                             {mustVerifyEmail &&
                                 user.email_verified_at === null && (
@@ -171,7 +170,6 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                                                     "verification.send"
                                                 )}
                                                 method="post"
-                                                as="button"
                                                 className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                             >
                                                 Click here to re-send the
@@ -208,7 +206,7 @@ const CreateCamapign = ({ auth, mustVerifyEmail, status }) => {
                             </div>
                         </form>
                     </div>
-                    <EmailTemplateOption/>
+                    <EmailTemplateOption />
                 </div>
             </div>
         </AuthenticatedLayout>
